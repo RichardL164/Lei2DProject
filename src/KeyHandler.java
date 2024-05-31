@@ -2,10 +2,14 @@ import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
 
 public class KeyHandler implements KeyListener {
-    boolean upPressed;
-    boolean leftPressed;
-    boolean downPressed;
-    boolean rightPressed;
+    boolean upPressedFire;
+    boolean leftPressedFire;
+    boolean downPressedFire;
+    boolean rightPressedFire;
+    boolean upPressedWater;
+    boolean leftPressedWater;
+    boolean downPressedWater;
+    boolean rightPressedWater;
 
     @Override
     public void keyTyped(KeyEvent e) {
@@ -16,16 +20,28 @@ public class KeyHandler implements KeyListener {
     public void keyPressed(KeyEvent e) {
         int code = e.getKeyCode();
         if (code == KeyEvent.VK_W) {
-            upPressed = true;
+            upPressedFire = true;
         }
         if (code == KeyEvent.VK_A) {
-            leftPressed = true;
+            leftPressedFire = true;
         }
         if (code == KeyEvent.VK_S) {
-            downPressed = true;
+            downPressedFire = true;
         }
         if (code == KeyEvent.VK_D) {
-            rightPressed = true;
+            rightPressedFire = true;
+        }
+        if (code == KeyEvent.VK_UP) {
+            upPressedWater = true;
+        }
+        if (code == KeyEvent.VK_LEFT) {
+            leftPressedWater = true;
+        }
+        if (code == KeyEvent.VK_DOWN) {
+            downPressedWater = true;
+        }
+        if (code == KeyEvent.VK_RIGHT) {
+            rightPressedWater = true;
         }
     }
 
@@ -33,16 +49,28 @@ public class KeyHandler implements KeyListener {
     public void keyReleased(KeyEvent e) {
         int code = e.getKeyCode();
         if (code == KeyEvent.VK_W) {
-            upPressed = false;
+            upPressedFire = false;
         }
         if (code == KeyEvent.VK_A) {
-            leftPressed = false;
+            leftPressedFire = false;
         }
         if (code == KeyEvent.VK_S) {
-            downPressed = false;
+            downPressedFire = false;
         }
         if (code == KeyEvent.VK_D) {
-            rightPressed = false;
+            rightPressedFire = false;
+        }
+        if (code == KeyEvent.VK_UP) {
+            upPressedWater = false;
+        }
+        if (code == KeyEvent.VK_LEFT) {
+            leftPressedWater = false;
+        }
+        if (code == KeyEvent.VK_DOWN) {
+            downPressedWater = false;
+        }
+        if (code == KeyEvent.VK_RIGHT) {
+            rightPressedWater = false;
         }
     }
 }

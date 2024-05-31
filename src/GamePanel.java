@@ -13,7 +13,8 @@ public class GamePanel extends JPanel implements Runnable {
 
     KeyHandler keyH = new KeyHandler();
     Thread gameThread;
-    Player player = new Player(this, keyH);
+    Player fireboy = new Player(this, keyH, "src/fireboy-removebg-preview.png");
+    Player watergirl = new Player(this, keyH, "src/watergirl-removebg-preview.png");
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenLength));
@@ -49,14 +50,16 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void update() {
-        player.update();
+        fireboy.updateFireboy();
+        watergirl.updateWatergirl();
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        Graphics2D g2 = (Graphics2D) g;
-        player.draw(g2);
-        g2.dispose();
+//        Graphics2D g2 = (Graphics2D) g;
+        fireboy.drawImage(g);
+        watergirl.drawImage(g);
+//        g2.dispose();
     }
 }
