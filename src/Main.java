@@ -7,12 +7,13 @@ public class Main {
         window.setResizable(false);
         window.setTitle("Firegirl and Waterboy");
 
+        GamePanel gamePanel = new GamePanel();
+        window.add(gamePanel);
+        window.pack();
+
         window.setLocationRelativeTo(null);
         window.setVisible(true);
 
-        GamePanel gamePanel = new GamePanel();
-        window.add(gamePanel);
-
-        window.pack();
+        gamePanel.startGameThread(); // Start the game thread here
     }
 }
