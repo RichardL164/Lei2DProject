@@ -13,8 +13,8 @@ public class GamePanel extends JPanel implements Runnable {
 
     KeyHandler keyH = new KeyHandler();
     Thread gameThread;
-    Player fireboy = new Player(this, keyH, "src/fireboy-removebg-preview.png");
-    Player watergirl = new Player(this, keyH, "src/watergirl-removebg-preview.png");
+    Player fireboy = new Player(this, keyH, "src/fireboy-removebg-preview.png", true);
+    Player watergirl = new Player(this, keyH, "src/watergirl-removebg-preview.png", false);
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenLength));
@@ -22,6 +22,7 @@ public class GamePanel extends JPanel implements Runnable {
         this.setDoubleBuffered(true);
         this.addKeyListener(keyH);
         this.setFocusable(true);
+        this.requestFocusInWindow(); // Request focus to capture key events
     }
 
     public void startGameThread() {
@@ -50,16 +51,14 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void update() {
-        fireboy.updateFireboy();
-        watergirl.updateWatergirl();
+        fireboy.update();
+        watergirl.update();
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-//        Graphics2D g2 = (Graphics2D) g;
         fireboy.drawImage(g);
         watergirl.drawImage(g);
-//        g2.dispose();
     }
 }

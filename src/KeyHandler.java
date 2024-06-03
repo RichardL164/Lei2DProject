@@ -4,17 +4,13 @@ import java.awt.event.KeyEvent;
 public class KeyHandler implements KeyListener {
     boolean upPressedFire;
     boolean leftPressedFire;
-    boolean downPressedFire;
     boolean rightPressedFire;
     boolean upPressedWater;
     boolean leftPressedWater;
-    boolean downPressedWater;
     boolean rightPressedWater;
 
     @Override
-    public void keyTyped(KeyEvent e) {
-
-    }
+    public void keyTyped(KeyEvent e) {}
 
     @Override
     public void keyPressed(KeyEvent e) {
@@ -25,9 +21,6 @@ public class KeyHandler implements KeyListener {
         if (code == KeyEvent.VK_A) {
             leftPressedFire = true;
         }
-        if (code == KeyEvent.VK_S) {
-            downPressedFire = true;
-        }
         if (code == KeyEvent.VK_D) {
             rightPressedFire = true;
         }
@@ -36,9 +29,6 @@ public class KeyHandler implements KeyListener {
         }
         if (code == KeyEvent.VK_LEFT) {
             leftPressedWater = true;
-        }
-        if (code == KeyEvent.VK_DOWN) {
-            downPressedWater = true;
         }
         if (code == KeyEvent.VK_RIGHT) {
             rightPressedWater = true;
@@ -54,9 +44,6 @@ public class KeyHandler implements KeyListener {
         if (code == KeyEvent.VK_A) {
             leftPressedFire = false;
         }
-        if (code == KeyEvent.VK_S) {
-            downPressedFire = false;
-        }
         if (code == KeyEvent.VK_D) {
             rightPressedFire = false;
         }
@@ -65,9 +52,6 @@ public class KeyHandler implements KeyListener {
         }
         if (code == KeyEvent.VK_LEFT) {
             leftPressedWater = false;
-        }
-        if (code == KeyEvent.VK_DOWN) {
-            downPressedWater = false;
         }
         if (code == KeyEvent.VK_RIGHT) {
             rightPressedWater = false;

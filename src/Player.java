@@ -8,55 +8,79 @@ public class Player extends Entity {
     GamePanel gp;
     KeyHandler keyH;
     private BufferedImage front;
+    private boolean isFireboy;
+    private boolean isJumping = false;
+    private double verticalVelocity = 0;
+    private final double gravity = 0.5;
+    private final double jumpStrength = -10;
+    private final int groundLevel = 300;
 
-    public Player(GamePanel gp, KeyHandler keyH, String front) {
+    public Player(GamePanel gp, KeyHandler keyH, String front, boolean isFireboy) {
         this.gp = gp;
         this.keyH = keyH;
+        this.isFireboy = isFireboy;
         setDefaultValues();
         try {
             this.front = ImageIO.read(new File(front));
-        } catch (IOException e){
+        } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-
     }
 
     public void setDefaultValues() {
         setX(100);
-        setY(100);
+        setY(groundLevel); // Start at ground level
         setDistance(4);
     }
 
+    public void update() {
+        if (isFireboy) {
+            updateFireboy();
+        } else {
+            updateWatergirl();
+        }
+        applyGravity();
+    }
+
     public void updateFireboy() {
-        if (keyH.upPressedFire) {
-            setY(getyCoord() - getDistance());
+        if (keyH.upPressedFire && !isJumping) {
+            verticalVelocity = jumpStrength;
+            isJumping = true;
         }
         if (keyH.leftPressedFire) {
             setX(getxCoord() - getDistance());
-        }
-        if (keyH.downPressedFire) {
-            setY(getyCoord() + getDistance());
         }
         if (keyH.rightPressedFire) {
             setX(getxCoord() + getDistance());
         }
     }
+
     public void updateWatergirl() {
-        if (keyH.upPressedWater) {
-            setY(getyCoord() - getDistance());
+        if (keyH.upPressedWater && !isJumping) {
+            verticalVelocity = jumpStrength;
+            isJumping = true;
         }
         if (keyH.leftPressedWater) {
             setX(getxCoord() - getDistance());
-        }
-        if (keyH.downPressedWater) {
-            setY(getyCoord() + getDistance());
         }
         if (keyH.rightPressedWater) {
             setX(getxCoord() + getDistance());
         }
     }
 
-    public void drawImage(Graphics g2) {
-        g2.drawImage(front, getxCoord(), getyCoord(), null);
+    public void applyGravity() {
+        if (isJumping) {
+            setY(getyCoord() + (int) verticalVelocity);
+            verticalVelocity += gravity;
+            if (getyCoord() >= groundLevel) {
+                setY(groundLevel);
+                isJumping = false;
+                verticalVelocity = 0;
+            }
+        }
+    }
+
+    public void drawImage(Graphics g) {
+        g.drawImage(front, getxCoord(), getyCoord(), null);
     }
 }
