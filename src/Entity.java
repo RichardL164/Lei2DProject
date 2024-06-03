@@ -1,10 +1,10 @@
 public class Entity {
     private int xCoord;
     private int yCoord;
-    private int distance;
+    private int speed;
 
-    public int getDistance() {
-        return distance;
+    public int getspeed() {
+        return speed;
     }
 
     public int getxCoord() {
@@ -23,7 +23,7 @@ public class Entity {
         this.yCoord = yCoord;
     }
 
-    public void setDistance(int distance) {
-        this.distance = distance;
+    public void setspeed(int speed) {
+        this.speed = speed;
     }
 }

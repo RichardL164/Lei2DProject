@@ -9,10 +9,15 @@ public class Player extends Entity {
     KeyHandler keyH;
     private BufferedImage front;
     private boolean isFireboy;
+
     private boolean isJumping = false;
     private double verticalVelocity = 0;
     private final double gravity = 0.5;
     private final double jumpStrength = -10;
+
+    private double horizontalVelocity = 0;
+    private final double momentum = 0.2;
+
     private final int groundLevel = 300;
 
     public Player(GamePanel gp, KeyHandler keyH, String front, boolean isFireboy) {
@@ -29,8 +34,8 @@ public class Player extends Entity {
 
     public void setDefaultValues() {
         setX(100);
-        setY(groundLevel); // Start at ground level
-        setDistance(4);
+        setY(groundLevel);
+        setspeed(4);
     }
 
     public void update() {
@@ -48,11 +53,31 @@ public class Player extends Entity {
             isJumping = true;
         }
         if (keyH.leftPressedFire) {
-            setX(getxCoord() - getDistance());
+            if (horizontalVelocity >= getspeed()) {
+                setX(getxCoord() - getspeed());
+            } else {
+                horizontalVelocity += momentum;
+                setX(getxCoord() - (int) horizontalVelocity);
+            }
+        }
+        if (!keyH.leftPressedFire) {
+            horizontalVelocity = 0;
         }
         if (keyH.rightPressedFire) {
-            setX(getxCoord() + getDistance());
+            setX(getxCoord() + getspeed());
         }
+//        if (keyH.rightPressedFire) {
+//            if (horizontalVelocity >= getspeed()) {
+//                setX(getxCoord() + getspeed());
+//            } else {
+//                horizontalVelocity += momentum;
+//                setX(getxCoord() + (int) horizontalVelocity);
+//            }
+//        }
+//        if (!keyH.rightPressedFire) {
+//            horizontalVelocity = 0;
+//        }
+
     }
 
     public void updateWatergirl() {
@@ -61,10 +86,29 @@ public class Player extends Entity {
             isJumping = true;
         }
         if (keyH.leftPressedWater) {
-            setX(getxCoord() - getDistance());
+            if (horizontalVelocity >= getspeed()) {
+                setX(getxCoord() - getspeed());
+            } else {
+                horizontalVelocity += momentum;
+                setX(getxCoord() - (int) horizontalVelocity);
+            }
         }
+        if (!keyH.leftPressedWater) {
+            horizontalVelocity = 0;
+        }
+//        if (keyH.rightPressedWater) {
+//            setX(getxCoord() + getspeed());
+//        }
         if (keyH.rightPressedWater) {
-            setX(getxCoord() + getDistance());
+            if (horizontalVelocity >= getspeed()) {
+                setX(getxCoord() + getspeed());
+            } else {
+                horizontalVelocity += momentum;
+                setX(getxCoord() + (int) horizontalVelocity);
+            }
+        }
+        if (!keyH.rightPressedWater) {
+            horizontalVelocity = 0;
         }
     }
 
