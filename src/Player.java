@@ -35,7 +35,7 @@ public class Player extends Entity {
     public void setDefaultValues() {
         setX(100);
         setY(groundLevel);
-        setspeed(4);
+        setspeed(3);
     }
 
     public void update() {
@@ -96,20 +96,20 @@ public class Player extends Entity {
         if (!keyH.leftPressedWater) {
             horizontalVelocity = 0;
         }
-//        if (keyH.rightPressedWater) {
-//            setX(getxCoord() + getspeed());
-//        }
         if (keyH.rightPressedWater) {
-            if (horizontalVelocity >= getspeed()) {
-                setX(getxCoord() + getspeed());
-            } else {
-                horizontalVelocity += momentum;
-                setX(getxCoord() + (int) horizontalVelocity);
-            }
+            setX(getxCoord() + getspeed());
         }
-        if (!keyH.rightPressedWater) {
-            horizontalVelocity = 0;
-        }
+//        if (keyH.rightPressedWater) {
+//            if (horizontalVelocity >= getspeed()) {
+//                setX(getxCoord() + getspeed());
+//            } else {
+//                horizontalVelocity += momentum;
+//                setX(getxCoord() + (int) horizontalVelocity);
+//            }
+//        }
+//        if (!keyH.rightPressedWater) {
+//            horizontalVelocity = 0;
+//        }
     }
 
     public void applyGravity() {
@@ -126,5 +126,6 @@ public class Player extends Entity {
 
     public void drawImage(Graphics g) {
         g.drawImage(front, getxCoord(), getyCoord(), null);
+//        g.drawImage();
     }
 }

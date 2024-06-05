@@ -13,8 +13,8 @@ public class GamePanel extends JPanel implements Runnable {
 
     KeyHandler keyH = new KeyHandler();
     Thread gameThread;
-    Player fireboy = new Player(this, keyH, "src/fireboy-removebg-preview.png", true);
-    Player watergirl = new Player(this, keyH, "src/watergirl-removebg-preview.png", false);
+    Player fireboy = new Player(this, keyH, "src/fireboy.png", true);
+    Player watergirl = new Player(this, keyH, "src/scaled watergirl.png", false);
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenLength));
