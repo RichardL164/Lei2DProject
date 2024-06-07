@@ -16,22 +16,22 @@ public class KeyHandler implements KeyListener {
     public void keyPressed(KeyEvent e) {
         int code = e.getKeyCode();
         if (code == KeyEvent.VK_W) {
-            upPressedFire = true;
-        }
-        if (code == KeyEvent.VK_A) {
-            leftPressedFire = true;
-        }
-        if (code == KeyEvent.VK_D) {
-            rightPressedFire = true;
-        }
-        if (code == KeyEvent.VK_UP) {
             upPressedWater = true;
         }
-        if (code == KeyEvent.VK_LEFT) {
+        if (code == KeyEvent.VK_A) {
             leftPressedWater = true;
         }
-        if (code == KeyEvent.VK_RIGHT) {
+        if (code == KeyEvent.VK_D) {
             rightPressedWater = true;
+        }
+        if (code == KeyEvent.VK_UP) {
+            upPressedFire = true;
+        }
+        if (code == KeyEvent.VK_LEFT) {
+            leftPressedFire = true;
+        }
+        if (code == KeyEvent.VK_RIGHT) {
+            rightPressedFire = true;
         }
     }
 
@@ -39,22 +39,22 @@ public class KeyHandler implements KeyListener {
     public void keyReleased(KeyEvent e) {
         int code = e.getKeyCode();
         if (code == KeyEvent.VK_W) {
-            upPressedFire = false;
-        }
-        if (code == KeyEvent.VK_A) {
-            leftPressedFire = false;
-        }
-        if (code == KeyEvent.VK_D) {
-            rightPressedFire = false;
-        }
-        if (code == KeyEvent.VK_UP) {
             upPressedWater = false;
         }
-        if (code == KeyEvent.VK_LEFT) {
+        if (code == KeyEvent.VK_A) {
             leftPressedWater = false;
         }
-        if (code == KeyEvent.VK_RIGHT) {
+        if (code == KeyEvent.VK_D) {
             rightPressedWater = false;
+        }
+        if (code == KeyEvent.VK_UP) {
+            upPressedFire = false;
+        }
+        if (code == KeyEvent.VK_LEFT) {
+            leftPressedFire = false;
+        }
+        if (code == KeyEvent.VK_RIGHT) {
+            rightPressedFire = false;
         }
     }
 }

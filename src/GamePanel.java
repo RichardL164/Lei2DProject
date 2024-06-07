@@ -15,7 +15,7 @@ public class GamePanel extends JPanel implements Runnable {
     Thread gameThread;
     Player fireboy = new Player(this, keyH, "src/fireboy.png", true);
     Player watergirl = new Player(this, keyH, "src/scaled watergirl.png", false);
-
+//    Switch lever = new Switch()
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenLength));
         this.setBackground(Color.BLACK);

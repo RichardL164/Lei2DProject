@@ -15,7 +15,9 @@ public class Player extends Entity {
     private final double gravity = 0.5;
     private final double jumpStrength = -10;
 
-    private double horizontalVelocity = 0;
+    private double leftHorizontalVelocity = 0;
+    private double rightHorizontalVelocity = 0;
+
     private final double momentum = 0.2;
 
     private final int groundLevel = 300;
@@ -53,30 +55,30 @@ public class Player extends Entity {
             isJumping = true;
         }
         if (keyH.leftPressedFire) {
-            if (horizontalVelocity >= getspeed()) {
+            if (leftHorizontalVelocity >= getspeed()) {
                 setX(getxCoord() - getspeed());
             } else {
-                horizontalVelocity += momentum;
-                setX(getxCoord() - (int) horizontalVelocity);
+                leftHorizontalVelocity += momentum;
+                setX(getxCoord() - (int) leftHorizontalVelocity);
             }
         }
         if (!keyH.leftPressedFire) {
-            horizontalVelocity = 0;
-        }
-        if (keyH.rightPressedFire) {
-            setX(getxCoord() + getspeed());
+            leftHorizontalVelocity = 0;
         }
 //        if (keyH.rightPressedFire) {
-//            if (horizontalVelocity >= getspeed()) {
-//                setX(getxCoord() + getspeed());
-//            } else {
-//                horizontalVelocity += momentum;
-//                setX(getxCoord() + (int) horizontalVelocity);
-//            }
+//            setX(getxCoord() + getspeed());
 //        }
-//        if (!keyH.rightPressedFire) {
-//            horizontalVelocity = 0;
-//        }
+        if (keyH.rightPressedFire) {
+            if (rightHorizontalVelocity >= getspeed()) {
+                setX(getxCoord() + getspeed());
+            } else {
+                rightHorizontalVelocity += momentum;
+                setX(getxCoord() + (int) rightHorizontalVelocity);
+            }
+        }
+        if (!keyH.rightPressedFire) {
+            rightHorizontalVelocity = 0;
+        }
 
     }
 
@@ -86,30 +88,30 @@ public class Player extends Entity {
             isJumping = true;
         }
         if (keyH.leftPressedWater) {
-            if (horizontalVelocity >= getspeed()) {
+            if (leftHorizontalVelocity >= getspeed()) {
                 setX(getxCoord() - getspeed());
             } else {
-                horizontalVelocity += momentum;
-                setX(getxCoord() - (int) horizontalVelocity);
+                leftHorizontalVelocity += momentum;
+                setX(getxCoord() - (int) leftHorizontalVelocity);
             }
         }
         if (!keyH.leftPressedWater) {
-            horizontalVelocity = 0;
-        }
-        if (keyH.rightPressedWater) {
-            setX(getxCoord() + getspeed());
+            leftHorizontalVelocity = 0;
         }
 //        if (keyH.rightPressedWater) {
-//            if (horizontalVelocity >= getspeed()) {
-//                setX(getxCoord() + getspeed());
-//            } else {
-//                horizontalVelocity += momentum;
-//                setX(getxCoord() + (int) horizontalVelocity);
-//            }
+//            setX(getxCoord() + getspeed());
 //        }
-//        if (!keyH.rightPressedWater) {
-//            horizontalVelocity = 0;
-//        }
+        if (keyH.rightPressedWater) {
+            if (rightHorizontalVelocity >= getspeed()) {
+                setX(getxCoord() + getspeed());
+            } else {
+                rightHorizontalVelocity += momentum;
+                setX(getxCoord() + (int) rightHorizontalVelocity);
+            }
+        }
+        if (!keyH.rightPressedWater) {
+            rightHorizontalVelocity = 0;
+        }
     }
 
     public void applyGravity() {
