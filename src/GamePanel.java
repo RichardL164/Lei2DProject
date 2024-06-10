@@ -16,7 +16,7 @@ public class GamePanel extends JPanel implements Runnable {
     Thread gameThread;
     public CollisionChecker cChecker = new CollisionChecker(this);
     Player fireboy = new Player(this, keyH, "src/fireboy.png", true);
-    Player watergirl = new Player(this, keyH, "src/scaled watergirl.png", false);
+    Player watergirl = new Player(this, keyH, "src/watergirl.png", false);
 //    Switch lever = new Switch()
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenLength));

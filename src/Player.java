@@ -108,7 +108,7 @@ public class Player extends Entity {
             rightHorizontalVelocity = 0;
         }
         collsionOn = false;
-        gp.cChecker.checkTile(this);
+//        gp.cChecker.checkTile(this);
     }
 
     public void applyGravity() {

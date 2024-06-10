@@ -4,7 +4,7 @@ public class CollisionChecker {
         this.gp = gp;
     }
 
-    public void checkTile(Entity entity) {
-        int entityLeftWorldX = entity.w
-    }
+//    public void checkTile(Entity entity) {
+//        int entityLeftWorldX = entity.w
+//    }
 }
