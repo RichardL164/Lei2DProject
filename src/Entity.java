@@ -1,7 +1,11 @@
+import java.awt.*;
+
 public class Entity {
-    private int xCoord;
-    private int yCoord;
+    private int xCoord; //worldX
+    private int yCoord; //worldY
     private int speed;
+    public Rectangle solidArea;
+    public boolean collsionOn = false;
 
     public int getspeed() {
         return speed;

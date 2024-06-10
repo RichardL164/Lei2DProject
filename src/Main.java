@@ -5,7 +5,7 @@ public class Main {
         JFrame window = new JFrame();
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setResizable(false);
-        window.setTitle("Firegirl and Waterboy");
+        window.setTitle("Fireboy and Watergirl");
 
         GamePanel gamePanel = new GamePanel();
         window.add(gamePanel);

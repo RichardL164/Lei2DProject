@@ -20,13 +20,14 @@ public class Player extends Entity {
 
     private final double momentum = 0.2;
 
-    private final int groundLevel = 300;
+    private final int groundLevel = 600;
 
     public Player(GamePanel gp, KeyHandler keyH, String front, boolean isFireboy) {
         this.gp = gp;
         this.keyH = keyH;
         this.isFireboy = isFireboy;
         setDefaultValues();
+        solidArea = new Rectangle(0, 0, 50, 62);
         try {
             this.front = ImageIO.read(new File(front));
         } catch (IOException e) {
@@ -54,7 +55,7 @@ public class Player extends Entity {
             verticalVelocity = jumpStrength;
             isJumping = true;
         }
-        if (keyH.leftPressedFire) {
+        if (keyH.leftPressedFire && getxCoord() > 0) {
             if (leftHorizontalVelocity >= getspeed()) {
                 setX(getxCoord() - getspeed());
             } else {
@@ -65,10 +66,7 @@ public class Player extends Entity {
         if (!keyH.leftPressedFire) {
             leftHorizontalVelocity = 0;
         }
-//        if (keyH.rightPressedFire) {
-//            setX(getxCoord() + getspeed());
-//        }
-        if (keyH.rightPressedFire) {
+        if (keyH.rightPressedFire && getxCoord() < gp.screenWidth) {
             if (rightHorizontalVelocity >= getspeed()) {
                 setX(getxCoord() + getspeed());
             } else {
@@ -87,7 +85,7 @@ public class Player extends Entity {
             verticalVelocity = jumpStrength;
             isJumping = true;
         }
-        if (keyH.leftPressedWater) {
+        if (keyH.leftPressedWater && getxCoord() > 0) {
             if (leftHorizontalVelocity >= getspeed()) {
                 setX(getxCoord() - getspeed());
             } else {
@@ -98,10 +96,7 @@ public class Player extends Entity {
         if (!keyH.leftPressedWater) {
             leftHorizontalVelocity = 0;
         }
-//        if (keyH.rightPressedWater) {
-//            setX(getxCoord() + getspeed());
-//        }
-        if (keyH.rightPressedWater) {
+        if (keyH.rightPressedWater && getxCoord() < gp.screenWidth  ) {
             if (rightHorizontalVelocity >= getspeed()) {
                 setX(getxCoord() + getspeed());
             } else {
@@ -112,6 +107,8 @@ public class Player extends Entity {
         if (!keyH.rightPressedWater) {
             rightHorizontalVelocity = 0;
         }
+        collsionOn = false;
+        gp.cChecker.checkTile(this);
     }
 
     public void applyGravity() {
@@ -128,6 +125,5 @@ public class Player extends Entity {
 
     public void drawImage(Graphics g) {
         g.drawImage(front, getxCoord(), getyCoord(), null);
-//        g.drawImage();
     }
 }

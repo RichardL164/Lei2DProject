@@ -3,16 +3,18 @@ import java.awt.*;
 
 public class GamePanel extends JPanel implements Runnable {
     public final int originalTileSize = 16;
-    final int scale = 3;
-    final int tileSize = originalTileSize * scale;
-    final int colTiles = 16;
-    final int rowTiles = 12;
-    final int screenWidth = tileSize * colTiles;
-    final int screenLength = tileSize * rowTiles;
+    public final int scale = 3;
+    public final int tileSize = originalTileSize * scale;
+    public final int colTiles = 26;
+    public final int rowTiles = 18;
+    public final int screenWidth = tileSize * colTiles;
+    public final int screenLength = tileSize * rowTiles;
     int FPS = 60;
 
+    TileManager tileM = new TileManager(this);
     KeyHandler keyH = new KeyHandler();
     Thread gameThread;
+    public CollisionChecker cChecker = new CollisionChecker(this);
     Player fireboy = new Player(this, keyH, "src/fireboy.png", true);
     Player watergirl = new Player(this, keyH, "src/scaled watergirl.png", false);
 //    Switch lever = new Switch()
@@ -58,6 +60,7 @@ public class GamePanel extends JPanel implements Runnable {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+        tileM.draw(g);
         fireboy.drawImage(g);
         watergirl.drawImage(g);
     }
