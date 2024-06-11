@@ -17,6 +17,9 @@ public class Player extends Entity {
     private final double gravity = 0.5;
     private final double jumpStrength = -12;
 
+    private boolean blueWin = false;
+    private boolean redWin = false;
+
     private double leftHorizontalVelocity = 0;
     private double rightHorizontalVelocity = 0;
 
@@ -48,6 +51,8 @@ public class Player extends Entity {
         }
     }
 
+
+
     public void update() {
         if (isFireboy) {
             updateFireboy();
@@ -62,13 +67,14 @@ public class Player extends Entity {
         if (isTouchingGreen()) {
             setDefaultValues();
         }
-        if (isBlueWin()) {
-
+        if (!isFireboy && isBlueWin()) {
+            blueWin = true;
         }
-        if (isRedWin()) {
-
+        if (isFireboy && isRedWin()) {
+            redWin = true;
         }
     }
+
 
     private void moveHorizontally() {
         // Move horizontally based on keyboard input
@@ -229,7 +235,7 @@ public class Player extends Entity {
     public boolean isTouchingGreen() {
         if (getxCoord() > 430 && getxCoord() < 526 && getyCoord() >= 744) {
             return true;
-        } else if (getxCoord() > 672 && getxCoord() < 768 && getyCoord() >= 744) {
+        } else if (getxCoord() > 624 && getxCoord() < 720 && getyCoord() >= 744) {
             return true;
         } else if (getxCoord() > 600 && getxCoord() < 680 && getyCoord() == 460) {
             return true;

@@ -68,6 +68,15 @@ public class GamePanel extends JPanel implements Runnable {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         tileM.draw(g);
+        g.setFont(new Font("Courier New", Font.BOLD, 40));
+        if (fireboy.isRedWin()){
+            g.setColor(Color.RED);
+            g.drawString("FIREBOY WINS", 300, 100);
+        }
+        if (watergirl.isBlueWin()){
+            g.setColor(Color.blue);
+            g.drawString("WATERGIRL WINS", 300, 150);
+        }
 
 
 //        g.drawImage(tileM.tile[8].image, 350, 50, 20, 100, null); // wall
