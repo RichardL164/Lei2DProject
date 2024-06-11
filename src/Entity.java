@@ -4,8 +4,11 @@ public class Entity {
     private int xCoord; //worldX
     private int yCoord; //worldY
     private int speed;
+    public String fireDirection;
+    public String waterDirection;
+
     public Rectangle solidArea;
-    public boolean collsionOn = false;
+    public boolean collisionOn = false; // Updated from collsionOn to collisionOn
 
     public int getspeed() {
         return speed;
