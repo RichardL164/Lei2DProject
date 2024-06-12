@@ -76,22 +76,22 @@ public class Player extends Entity {
     }
 
 
-    private void moveHorizontally() {
-        // Move horizontally based on keyboard input
-        if (isFireboy) {
-            if (keyH.leftPressedFire && getxCoord() > 0 && !isCollidingLeft()) {
-                setX(getxCoord() - getspeed());
-            } else if (keyH.rightPressedFire && getxCoord() < gp.screenWidth - solidArea.width && !isCollidingRight()) {
-                setX(getxCoord() + getspeed());
-            }
-        } else {
-            if (keyH.leftPressedWater && getxCoord() > 0 && !isCollidingLeft()) {
-                setX(getxCoord() - getspeed());
-            } else if (keyH.rightPressedWater && getxCoord() < gp.screenWidth - solidArea.width && !isCollidingRight()) {
-                setX(getxCoord() + getspeed());
-            }
-        }
-    }
+//    private void moveHorizontally() {
+//        // Move horizontally based on keyboard input
+//        if (isFireboy) {
+//            if (keyH.leftPressedFire && getxCoord() > 48 && !isCollidingLeft()) {
+//                setX(getxCoord() - getspeed());
+//            } else if (keyH.rightPressedFire && getxCoord() < gp.screenWidth - solidArea.width - 48 && !isCollidingRight()) {
+//                setX(getxCoord() + getspeed());
+//            }
+//        } else {
+//            if (keyH.leftPressedWater && getxCoord() > 48 && !isCollidingLeft()) {
+//                setX(getxCoord() - getspeed());
+//            } else if (keyH.rightPressedWater && getxCoord() < gp.screenWidth - solidArea.width - 48 && !isCollidingRight()) {
+//                setX(getxCoord() + getspeed());
+//            }
+//        }
+//    }
 
     private boolean isCollidingLeft() {
         // Check if the sprite is colliding with a wall to the left
@@ -137,13 +137,36 @@ public class Player extends Entity {
     }
 
 
+    private void moveHorizontally() {
+        int leftBoundary = 48; // Left boundary (1 tile width)
+        int rightBoundary = gp.screenWidth - solidArea.width - 48; // Right boundary (screen width - player width - 1 tile width)
+
+        // Move horizontally based on keyboard input
+        if (isFireboy) {
+            if (keyH.leftPressedFire && getxCoord() > leftBoundary && !isCollidingLeft()) {
+                setX(getxCoord() - getspeed());
+            } else if (keyH.rightPressedFire && getxCoord() < rightBoundary && !isCollidingRight()) {
+                setX(getxCoord() + getspeed());
+            }
+        } else {
+            if (keyH.leftPressedWater && getxCoord() > leftBoundary && !isCollidingLeft()) {
+                setX(getxCoord() - getspeed());
+            } else if (keyH.rightPressedWater && getxCoord() < rightBoundary && !isCollidingRight()) {
+                setX(getxCoord() + getspeed());
+            }
+        }
+    }
+
     public void updateFireboy() {
+        int leftBoundary = 48; // Left boundary (1 tile width)
+        int rightBoundary = gp.screenWidth - solidArea.width - 48; // Right boundary (screen width - player width - 1 tile width)
+
         if (keyH.upPressedFire && !isJumping) {
             verticalVelocity = jumpStrength;
             isJumping = true;
             fireDirection = "up";
         }
-        if (keyH.leftPressedFire && getxCoord() > 0) {
+        if (keyH.leftPressedFire && getxCoord() > leftBoundary) {
             if (leftHorizontalVelocity >= getspeed()) {
                 setX(getxCoord() - getspeed());
             } else {
@@ -155,7 +178,7 @@ public class Player extends Entity {
         if (!keyH.leftPressedFire) {
             leftHorizontalVelocity = 0;
         }
-        if (keyH.rightPressedFire && getxCoord() < gp.screenWidth) {
+        if (keyH.rightPressedFire && getxCoord() < rightBoundary) {
             if (rightHorizontalVelocity >= getspeed()) {
                 setX(getxCoord() + getspeed());
             } else {
@@ -170,12 +193,15 @@ public class Player extends Entity {
     }
 
     public void updateWatergirl() {
+        int leftBoundary = 48; // Left boundary (1 tile width)
+        int rightBoundary = gp.screenWidth - solidArea.width - 48; // Right boundary (screen width - player width - 1 tile width)
+
         if (keyH.upPressedWater && !isJumping) {
             verticalVelocity = jumpStrength;
             isJumping = true;
             waterDirection = "up";
         }
-        if (keyH.leftPressedWater && getxCoord() > 0) {
+        if (keyH.leftPressedWater && getxCoord() > leftBoundary) {
             if (leftHorizontalVelocity >= getspeed()) {
                 setX(getxCoord() - getspeed());
             } else {
@@ -187,7 +213,7 @@ public class Player extends Entity {
         if (!keyH.leftPressedWater) {
             leftHorizontalVelocity = 0;
         }
-        if (keyH.rightPressedWater && getxCoord() < gp.screenWidth) {
+        if (keyH.rightPressedWater && getxCoord() < rightBoundary) {
             if (rightHorizontalVelocity >= getspeed()) {
                 setX(getxCoord() + getspeed());
             } else {
